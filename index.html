@@ -1,0 +1,3397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yayasan Bumi Langgat Peduli</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #166534;
+      --primary-dark: #14532d;
+      --primary-light: #dcfce7;
+      --danger: #dc2626;
+      --danger-light: #fee2e2;
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+      --info: #3b82f6;
+      --info-light: #dbeafe;
+      --purple: #9333ea;
+      --purple-light: #f3e8ff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --radius-sm: 6px;
+      --radius: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --sidebar-width: 280px;
+    }
+    
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--gray-50); color: var(--gray-800); line-height: 1.5; }
+    
+    /* ==================== LOGIN ==================== */
+    .login-container { 
+      min-height: 100vh; 
+      background: linear-gradient(135deg, #064e3b 0%, #166534 50%, #15803d 100%); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      padding: 20px; 
+    }
+    .login-card { 
+      background: white; 
+      border-radius: var(--radius-xl); 
+      padding: 48px; 
+      max-width: 420px; 
+      width: 100%; 
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #166534, #22c55e);
+    }
+    .login-logo { 
+      text-align: center; 
+      margin-bottom: 32px; 
+    }
+    .login-logo-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--primary), #22c55e);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: white;
+    }
+    .login-logo h1 { 
+      color: var(--gray-800); 
+      font-size: 24px; 
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .login-logo p { 
+      color: var(--gray-500); 
+      font-size: 14px; 
+      margin-top: 4px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px;
+      font-weight: 500; 
+      margin-bottom: 6px; 
+      color: var(--gray-700); 
+      font-size: 14px; 
+    }
+    .form-group label svg, 
+    .form-group label i { 
+      color: var(--primary); 
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    input, select, textarea { 
+      width: 100%; 
+      padding: 12px 14px; 
+      border: 1.5px solid var(--gray-200); 
+      border-radius: var(--radius); 
+      font-size: 14px; 
+      font-family: inherit;
+      transition: all 0.2s;
+      background: white;
+    }
+    input:focus, select:focus, textarea:focus { 
+      outline: none; 
+      border-color: var(--primary); 
+      box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.08);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      width: 100%;
+    }
+    .btn-primary:hover { 
+      background: var(--primary-dark); 
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-primary:disabled { 
+      background: var(--gray-300); 
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-secondary {
+      background: white;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-300);
+    }
+    .btn-secondary:hover {
+      background: var(--gray-50);
+      border-color: var(--gray-400);
+    }
+    .btn-success {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-success:hover { background: var(--primary-dark); }
+    .btn-danger {
+      background: var(--danger-light);
+      color: var(--danger);
+    }
+    .btn-danger:hover {
+      background: var(--danger);
+      color: white;
+    }
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+    .alert { 
+      padding: 12px 16px; 
+      border-radius: var(--radius); 
+      margin-bottom: 20px; 
+      font-size: 14px; 
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+    .alert.show { display: flex; }
+    .alert i { flex-shrink: 0; }
+    .alert-error { 
+      background: var(--danger-light); 
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+    .alert-success { 
+      background: var(--primary-light); 
+      color: var(--primary-dark);
+      border: 1px solid #bbf7d0;
+    }
+    .login-footer { 
+      text-align: center; 
+      margin-top: 24px; 
+      font-size: 12px; 
+      color: var(--gray-500);
+    }
+    .loading { 
+      display: inline-block; 
+      width: 16px; 
+      height: 16px; 
+      border: 2px solid currentColor; 
+      border-radius: 50%; 
+      border-top-color: transparent; 
+      animation: spin 0.6s linear infinite; 
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* ==================== LAYOUT ==================== */
+    .dashboard-container { display: none; }
+    
+    /* ==================== SIDEBAR ==================== */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background: white;
+      border-right: 1px solid var(--gray-200);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(0);
+      transition: transform 0.25s ease;
+    }
+    .sidebar-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sidebar-brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--primary), #22c55e);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .sidebar-brand-text h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+    .sidebar-brand-text p {
+      font-size: 11px;
+      color: var(--gray-500);
+    }
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 12px;
+      overflow-y: auto;
+    }
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0 12px;
+      margin-bottom: 8px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+      margin-bottom: 2px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-600);
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+    .nav-item:hover {
+      background: var(--gray-100);
+      color: var(--gray-800);
+    }
+    .nav-item.active {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid var(--gray-200);
+    }
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: var(--gray-50);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+    }
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary), #22c55e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .user-info { flex: 1; min-width: 0; }
+    .user-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-800);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-role {
+      font-size: 11px;
+      color: var(--gray-500);
+    }
+    .btn-logout {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      background: var(--danger-light);
+      color: var(--danger);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .btn-logout:hover {
+      background: var(--danger);
+      color: white;
+    }
+    
+    /* ==================== MAIN CONTENT ==================== */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      min-height: 100vh;
+    }
+    .top-bar {
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--gray-300);
+      background: white;
+      border-radius: var(--radius);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--gray-700);
+    }
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gray-800);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .page-title i { color: var(--primary); }
+    .top-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-add {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .btn-add:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+    .content-area {
+      padding: 24px;
+      flex: 1;
+      min-width: 0;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    /* ==================== STATS CARDS ==================== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all 0.2s;
+    }
+    .stat-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .stat-icon.green { background: var(--primary-light); color: var(--primary); }
+    .stat-icon.blue { background: var(--info-light); color: var(--info); }
+    .stat-icon.orange { background: var(--warning-light); color: var(--warning); }
+    .stat-icon.red { background: var(--danger-light); color: var(--danger); }
+    .stat-icon.purple { background: var(--purple-light); color: var(--purple); }
+    .stat-content { flex: 1; }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-800);
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+    
+    /* ==================== CONTENT CARDS ==================== */
+    .card {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      margin-bottom: 24px;
+    }
+    .card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gray-800);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-title i { color: var(--primary); }
+    .card-body {
+      padding: 24px;
+    }
+    .card-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--gray-200);
+      background: var(--gray-50);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+    
+    /* ==================== TABLE ==================== */
+    .table-container {
+      overflow-x: auto;
+      border-radius: var(--radius);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    th {
+      background: var(--gray-50);
+      font-weight: 600;
+      color: var(--gray-600);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    tbody tr:hover {
+      background: var(--gray-50);
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .cell-actions {
+      display: flex;
+      gap: 6px;
+    }
+    .btn-icon-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--gray-500);
+      background: transparent;
+    }
+    .btn-icon-sm:hover {
+      background: var(--gray-100);
+      color: var(--gray-700);
+    }
+    .btn-icon-sm.edit:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .btn-icon-sm.view:hover {
+      background: var(--info-light);
+      color: var(--info);
+    }
+    .btn-icon-sm.delete:hover {
+      background: var(--danger-light);
+      color: var(--danger);
+    }
+    
+    /* ==================== EMPTY STATE ==================== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray-500);
+    }
+    .empty-state i {
+      width: 64px;
+      height: 64px;
+      color: var(--gray-300);
+      margin-bottom: 16px;
+    }
+    .empty-state h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 4px;
+    }
+    
+    /* ==================== MODAL ==================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .modal-overlay.show {
+      display: flex;
+      opacity: 1;
+    }
+    .modal {
+      background: white;
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-xl);
+      transform: scale(0.95);
+      transition: transform 0.2s;
+    }
+    .modal-overlay.show .modal {
+      transform: scale(1);
+    }
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-800);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-title i { color: var(--primary); }
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--gray-400);
+      transition: all 0.2s;
+    }
+    .modal-close:hover {
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: var(--gray-50);
+    }
+    
+    /* ==================== FORM GRID ==================== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--gray-700);
+      margin-bottom: 6px;
+    }
+    .form-group label .required {
+      color: var(--danger);
+    }
+    .form-group .form-help {
+      display: block;
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-top: 4px;
+      font-style: italic;
+    }
+    
+    /* ==================== SEARCH BAR ==================== */
+    .search-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .search-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .search-icon-box i {
+      width: 20px;
+      height: 20px;
+    }
+    .search-input-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+    .search-input-wrapper input {
+      width: 100%;
+    }
+    
+    /* ==================== TOAST ==================== */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      border-left: 4px solid;
+      min-width: 300px;
+      max-width: 400px;
+      animation: slideIn 0.3s ease;
+    }
+    .toast.success { border-color: var(--primary); }
+    .toast.error { border-color: var(--danger); }
+    .toast.warning { border-color: var(--warning); }
+    .toast i {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .toast.success i { color: var(--primary); }
+    .toast.error i { color: var(--danger); }
+    .toast.warning i { color: var(--warning); }
+    .toast-content {
+      flex: 1;
+    }
+    .toast-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--gray-800);
+    }
+    .toast-message {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    .toast-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-400);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .toast-close:hover { color: var(--gray-600); }
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    .toast.hiding {
+      animation: slideOut 0.3s ease forwards;
+    }
+    
+    /* ==================== BADGES ==================== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .badge-green {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    .badge-blue {
+      background: var(--info-light);
+      color: var(--info);
+    }
+    .badge-purple {
+      background: var(--purple-light);
+      color: var(--purple);
+    }
+    .badge-orange,
+    .badge-warning {
+      background: var(--warning-light);
+      color: var(--warning);
+    }
+    .badge-success {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .badge-gray {
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
+    
+    /* ==================== PROGRAM GRID ==================== */
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .program-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 2px solid var(--gray-200);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .program-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .program-card i {
+      width: 48px;
+      height: 48px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .program-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 4px;
+    }
+    .program-card p {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    
+    /* ==================== RESPONSIVE ==================== */
+    .mobile-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.45);
+      z-index: 150;
+    }
+
+    @media (max-width: 1024px) {
+      :root { --sidebar-width: 0; }
+      .menu-toggle { display: inline-flex; }
+      .sidebar {
+        width: 280px;
+        max-width: 86vw;
+        box-shadow: var(--shadow-xl);
+        transform: translateX(-100%);
+      }
+      body.sidebar-open .sidebar { transform: translateX(0); }
+      body.sidebar-open .mobile-backdrop { display: block; }
+      .main-content { margin-left: 0; }
+      .top-bar { padding: 12px 16px; gap: 12px; }
+      .page-title { font-size: 20px; flex: 1; min-width: 0; }
+      .top-bar-actions { gap: 8px; }
+      .content-area { padding: 16px; max-width: 100%; }
+      .card-header, .card-body, .modal-header, .modal-body, .modal-footer { padding-left: 16px; padding-right: 16px; }
+      .stats-grid, .dashboard-grid, .program-grid { grid-template-columns: 1fr !important; }
+    }
+
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .page-title { font-size: 18px; }
+      .content-area { padding: 12px; }
+      .card { margin-bottom: 16px; }
+      .search-bar { gap: 8px; }
+      .top-bar-actions .btn,
+      .top-bar-actions .btn-add,
+      .top-bar-actions .btn-secondary {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      .top-bar-actions .btn i,
+      .top-bar-actions .btn-add i,
+      .top-bar-actions .btn-secondary i {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    
+    /* ==================== DASHBOARD WIDGETS ==================== */
+    .widget-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .widget {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+    }
+    .widget-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .widget-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+    .widget-body {
+      padding: 20px;
+    }
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .activity-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .activity-content { flex: 1; }
+    .activity-text {
+      font-size: 13px;
+      color: var(--gray-700);
+    }
+    .activity-time {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== LOGIN VIEW ==================== -->
+<div id="loginView" class="login-container">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">
+        <i data-lucide="leaf"></i>
+      </div>
+      <h1>Yayasan Bumi Langgat Peduli</h1>
+      <p>Sistem Pendataan Digital</p>
+    </div>
+    
+    <div id="loginAlert" class="alert">
+      <i data-lucide="alert-circle"></i>
+      <span id="loginAlertText"></span>
+    </div>
+    
+    <div class="form-group">
+      <label><i data-lucide="mail" style="margin-bottom:-3px;"></i> Email</label>
+      <input type="email" id="email" placeholder="admin@yayasan.com" autocomplete="off">
+    </div>
+    
+    <div class="form-group">
+      <label><i data-lucide="lock" style="margin-bottom:-3px;"></i> Password</label>
+      <input type="password" id="password" placeholder="Masukkan password" onkeypress="if(event.key==='Enter') doLogin()">
+    </div>
+    
+    <button id="loginBtn" class="btn btn-primary" onclick="doLogin()">
+      <i data-lucide="log-in"></i>
+      Masuk ke Dashboard
+    </button>
+    
+    <div class="login-footer">Yayasan Bumi Langgat Peduli v2.0</div>
+  </div>
+</div>
+
+<!-- ==================== DASHBOARD VIEW ==================== -->
+<div id="dashboardView" class="dashboard-container">
+  <div class="mobile-backdrop" onclick="closeSidebar()"></div>
+  
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">
+          <i data-lucide="leaf" style="width:22px;height:22px;"></i>
+        </div>
+        <div class="sidebar-brand-text">
+          <h2>YBLP</h2>
+          <p>Sistem Pendataan</p>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-title">Menu Utama</div>
+        <button class="nav-item active" data-menu="dashboard" onclick="showMenu('dashboard')">
+          <i data-lucide="layout-dashboard"></i>
+          Dashboard
+        </button>
+        <button class="nav-item" data-menu="laporan" onclick="showMenu('laporan')">
+          <i data-lucide="file-text"></i>
+          Laporan
+        </button>
+      </div>
+      
+      <div class="nav-section">
+        <div class="nav-section-title">Master Data</div>
+        <button class="nav-item" data-menu="master-anak-yatim" onclick="showMenu('master-anak-yatim')">
+          <i data-lucide="heart-handshake"></i>
+          Anak Yatim
+        </button>
+        <button class="nav-item" data-menu="master-duafa" onclick="showMenu('master-duafa')">
+          <i data-lucide="hand-heart"></i>
+          Duafa
+        </button>
+      </div>
+      
+      <div class="nav-section">
+        <div class="nav-section-title">Program</div>
+        <button class="nav-item" data-menu="program-santunan" onclick="showMenu('program-santunan')">
+          <i data-lucide="gift"></i>
+          Santunan
+        </button>
+        <button class="nav-item" data-menu="program-khitan" onclick="showMenu('program-khitan')">
+          <i data-lucide="heart-pulse"></i>
+          Khitan Masal
+        </button>
+        <button class="nav-item" data-menu="program-bedah" onclick="showMenu('program-bedah')">
+          <i data-lucide="home"></i>
+          Bedah Rumah
+        </button>
+      </div>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">
+          <i data-lucide="user" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="user-info">
+          <div class="user-name" id="userDisplayName">Admin</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">
+        <i data-lucide="log-out" style="width:16px;height:16px;"></i>
+        Logout
+      </button>
+    </div>
+  </aside>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <button class="menu-toggle" onclick="toggleSidebar()" title="Menu">
+        <i data-lucide="menu"></i>
+      </button>
+      <h1 class="page-title">
+        <i data-lucide="layout-dashboard"></i>
+        <span id="pageTitle">Dashboard</span>
+      </h1>
+      <div class="top-bar-actions" id="topBarActions">
+        <!-- Dynamic actions -->
+      </div>
+    </header>
+    
+    <!-- Content Area -->
+    <div class="content-area" id="content">
+      <!-- Dynamic content -->
+    </div>
+  </main>
+</div>
+
+<!-- ==================== MODAL ==================== -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">
+        <i data-lucide="plus-circle"></i>
+        <span id="modalTitle">Tambah Data</span>
+      </h2>
+      <button class="modal-close" onclick="closeModal()">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Dynamic form -->
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn btn-success" id="modalSubmitBtn" onclick="submitModalForm()">
+        <i data-lucide="save"></i>
+        Simpan Data
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TOAST CONTAINER ==================== -->
+<div id="toastContainer" class="toast-container"></div>
+
+<script>
+  // Initialize Lucide icons
+  lucide.createIcons();
+  
+  // ==================== STATE ====================
+  let sessionToken = localStorage.getItem('ybl_session_token');
+  let currentProgram = null;
+  let currentData = [];
+  let currentHeaders = [];
+  let currentUser = null;
+  let isModalSubmitting = false;
+  
+  // ==================== SESSION ====================
+  if (sessionToken) {
+    verifySession();
+  }
+  
+  function verifySession() {
+    google.script.run
+      .withSuccessHandler(result => {
+        if (result.loggedIn) {
+          currentUser = result.email;
+          document.getElementById('userDisplayName').textContent = result.email.split('@')[0];
+          showDashboard();
+        } else {
+          localStorage.removeItem('ybl_session_token');
+          sessionToken = null;
+          showLogin();
+        }
+      })
+      .withFailureHandler(() => showLogin())
+      .checkLogin(sessionToken);
+  }
+  
+  function showLogin() {
+    document.getElementById('loginView').style.display = 'flex';
+    document.getElementById('dashboardView').style.display = 'none';
+    lucide.createIcons();
+  }
+  
+  function showDashboard() {
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('dashboardView').style.display = 'block';
+    lucide.createIcons();
+    renderDashboard();
+  }
+  
+  // ==================== LOGIN ====================
+  function doLogin() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const alertDiv = document.getElementById('loginAlert');
+    const alertText = document.getElementById('loginAlertText');
+    const loginBtn = document.getElementById('loginBtn');
+    
+    alertDiv.className = 'alert';
+    alertDiv.style.display = 'none';
+    
+    if (!email || !password) {
+      alertText.textContent = 'Email dan password harus diisi';
+      alertDiv.className = 'alert alert-error show';
+      return;
+    }
+    
+    loginBtn.disabled = true;
+    loginBtn.innerHTML = '<span class="loading"></span> Memproses...';
+    
+    google.script.run
+      .withSuccessHandler(result => {
+        loginBtn.disabled = false;
+        loginBtn.innerHTML = '<i data-lucide="log-in"></i> Masuk ke Dashboard';
+        lucide.createIcons();
+        
+        if (result.success) {
+          if (result.token) {
+            sessionToken = result.token;
+            localStorage.setItem('ybl_session_token', result.token);
+          }
+          currentUser = result.email;
+          document.getElementById('userDisplayName').textContent = result.email.split('@')[0];
+          showToast('success', 'Login Berhasil', 'Selamat datang kembali!');
+          setTimeout(showDashboard, 300);
+        } else {
+          alertText.textContent = result.message;
+          alertDiv.className = 'alert alert-error show';
+        }
+      })
+      .withFailureHandler(error => {
+        loginBtn.disabled = false;
+        loginBtn.innerHTML = '<i data-lucide="log-in"></i> Masuk ke Dashboard';
+        lucide.createIcons();
+        alertText.textContent = 'Terjadi kesalahan: ' + error.message;
+        alertDiv.className = 'alert alert-error show';
+      })
+      .loginUser(email, password);
+  }
+  
+  // ==================== LOGOUT ====================
+  function doLogout() {
+    if (sessionToken) {
+      google.script.run
+        .withSuccessHandler(() => {
+          localStorage.removeItem('ybl_session_token');
+          sessionToken = null;
+          showLogin();
+          document.getElementById('email').value = '';
+          document.getElementById('password').value = '';
+        })
+        .withFailureHandler(() => {
+          localStorage.removeItem('ybl_session_token');
+          sessionToken = null;
+          showLogin();
+        })
+        .logout(sessionToken);
+    } else {
+      localStorage.removeItem('ybl_session_token');
+      sessionToken = null;
+      showLogin();
+    }
+  }
+  
+  // ==================== NAVIGATION ====================
+  function showMenu(menu) {
+    console.log('showMenu called with:', menu);
+    
+    // Update sidebar active state
+    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.nav-item[data-menu="${menu}"]`)?.classList.add('active');
+    
+    // Update page title
+    const titles = {
+      'dashboard': 'Dashboard',
+      'master-anak-yatim': 'Master Data Anak Yatim',
+      'master-duafa': 'Master Data Duafa',
+      'program-santunan': 'Program Santunan',
+      'program-khitan': 'Program Khitan Masal',
+      'program-bedah': 'Program Bedah Rumah',
+      'laporan': 'Laporan Semua Program'
+    };
+    document.getElementById('pageTitle').textContent = titles[menu] || 'Dashboard';
+    
+    // Update page title icon
+    const icons = {
+      'dashboard': 'layout-dashboard',
+      'master-anak-yatim': 'heart-handshake',
+      'master-duafa': 'hand-heart',
+      'program-santunan': 'gift',
+      'program-khitan': 'heart-pulse',
+      'program-bedah': 'home',
+      'laporan': 'file-text'
+    };
+    const pageTitleIcon = document.querySelector('.page-title i');
+    if (pageTitleIcon) {
+      pageTitleIcon.setAttribute('data-lucide', icons[menu] || 'layout-dashboard');
+    } else {
+      // Fallback: replace entire icon element
+      const pageTitle = document.querySelector('.page-title');
+      if (pageTitle) {
+        const iconName = icons[menu] || 'layout-dashboard';
+        pageTitle.innerHTML = `<i data-lucide="${iconName}"></i><span id="pageTitle">${titles[menu] || 'Dashboard'}</span>`;
+      }
+    }
+    
+    // Render content
+    if (menu === 'dashboard') renderDashboard();
+    else if (menu === 'laporan') renderLaporan();
+    else if (menu.startsWith('master-')) {
+      currentProgram = menu;
+      renderMasterDataPage(menu);
+    }
+    else if (menu.startsWith('program-')) {
+      currentProgram = menu;
+      renderProgramSessionPage(menu);
+    }
+    
+    lucide.createIcons();
+    closeSidebar();
+  }
+
+  function toggleSidebar() {
+    document.body.classList.toggle('sidebar-open');
+  }
+
+  function closeSidebar() {
+    document.body.classList.remove('sidebar-open');
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) closeSidebar();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeSidebar();
+  });
+  
+  // ==================== TOAST ====================
+  function showToast(type, title, message) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    
+    const iconMap = {
+      'success': 'check-circle',
+      'error': 'x-circle',
+      'warning': 'alert-triangle'
+    };
+    
+    toast.innerHTML = `
+      <i data-lucide="${iconMap[type]}"></i>
+      <div class="toast-content">
+        <div class="toast-title">${title}</div>
+        <div class="toast-message">${message}</div>
+      </div>
+      <button class="toast-close" onclick="this.parentElement.remove()">
+        <i data-lucide="x" style="width:16px;height:16px;"></i>
+      </button>
+    `;
+    
+    container.appendChild(toast);
+    lucide.createIcons();
+    
+    setTimeout(() => {
+      toast.classList.add('hiding');
+      setTimeout(() => toast.remove(), 300);
+    }, 4000);
+  }
+  
+  // ==================== MODAL ====================
+  function openModal(title, formHtml, submitCallback, submitLabel = 'Simpan Data') {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').innerHTML = formHtml;
+    const submitBtn = document.getElementById('modalSubmitBtn');
+    if (submitCallback) {
+      submitBtn.style.display = 'inline-flex';
+      submitBtn.innerHTML = `<i data-lucide="save"></i> ${submitLabel}`;
+      submitBtn.disabled = false;
+      submitBtn.dataset.defaultLabel = submitLabel;
+    } else {
+      submitBtn.style.display = 'none';
+    }
+    isModalSubmitting = false;
+    document.getElementById('modalOverlay').classList.add('show');
+    window.modalSubmitCallback = submitCallback;
+    lucide.createIcons();
+  }
+  
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+    window.modalSubmitCallback = null;
+    endModalSubmit();
+  }
+  
+  function closeModalOnOverlay(event) {
+    if (event.target === document.getElementById('modalOverlay')) {
+      closeModal();
+    }
+  }
+  
+  function submitModalForm() {
+    if (isModalSubmitting) return;
+    if (window.modalSubmitCallback) {
+      window.modalSubmitCallback();
+    }
+  }
+
+  function beginModalSubmit() {
+    if (isModalSubmitting) return false;
+    isModalSubmitting = true;
+    const submitBtn = document.getElementById('modalSubmitBtn');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading"></span> Menyimpan...';
+    }
+    return true;
+  }
+
+  function endModalSubmit() {
+    isModalSubmitting = false;
+    const submitBtn = document.getElementById('modalSubmitBtn');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      const label = submitBtn.dataset.defaultLabel || 'Simpan Data';
+      submitBtn.innerHTML = `<i data-lucide="save"></i> ${label}`;
+      lucide.createIcons();
+    }
+  }
+  
+  // ==================== DASHBOARD ====================
+  function renderDashboard() {
+    console.log('renderDashboard called');
+    const content = document.getElementById('content');
+    document.getElementById('topBarActions').innerHTML = '';
+    
+    content.innerHTML = `
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon green"><i data-lucide="heart-handshake"></i></div>
+          <div class="stat-content">
+            <div class="stat-value" id="statAnakYatim">-</div>
+            <div class="stat-label">Anak Yatim Aktif</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i data-lucide="hand-heart"></i></div>
+          <div class="stat-content">
+            <div class="stat-value" id="statDuafa">-</div>
+            <div class="stat-label">Duafa Aktif</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple"><i data-lucide="users"></i></div>
+          <div class="stat-content">
+            <div class="stat-value" id="statTotalPenerima">-</div>
+            <div class="stat-label">Total Penerima</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><i data-lucide="home"></i></div>
+          <div class="stat-content">
+            <div class="stat-value" id="statBedahBerjalan">-</div>
+            <div class="stat-label">Bedah Rumah Berjalan</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Quick Access -->
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i data-lucide="layout-grid"></i>
+            Akses Cepat
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="program-grid" id="quickAccess">
+            <div class="program-card" onclick="showMenu('master-anak-yatim')">
+              <i data-lucide="heart-handshake"></i>
+              <p>Data Anak Yatim</p>
+            </div>
+            <div class="program-card" onclick="showMenu('master-duafa')">
+              <i data-lucide="hand-heart"></i>
+              <p>Data Duafa</p>
+            </div>
+            <div class="program-card" onclick="showMenu('program-santunan')">
+              <i data-lucide="gift"></i>
+              <p>Program Santunan</p>
+            </div>
+            <div class="program-card" onclick="showMenu('program-khitan')">
+              <i data-lucide="heart-pulse"></i>
+              <p>Khitan Masal</p>
+            </div>
+            <div class="program-card" onclick="showMenu('program-bedah')">
+              <i data-lucide="home"></i>
+              <p>Bedah Rumah</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Program Terbaru -->
+      <div class="dashboard-grid">
+        <!-- Santunan Terbaru -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i data-lucide="gift"></i>
+              Santunan Terbaru
+            </h3>
+            <button class="btn btn-secondary" onclick="showMenu('program-santunan')" style="padding: 6px 12px; font-size: 13px;">
+              Lihat Semua
+            </button>
+          </div>
+          <div class="card-body" style="padding: 0;">
+            <div id="santunanTerbaru">
+              <div style="padding: 40px; text-align: center; color: var(--gray-500);">
+                <div class="loading"></div> Memuat...
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Khitan Masal Terbaru -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i data-lucide="heart-pulse"></i>
+              Khitan Masal Terbaru
+            </h3>
+            <button class="btn btn-secondary" onclick="showMenu('program-khitan')" style="padding: 6px 12px; font-size: 13px;">
+              Lihat Semua
+            </button>
+          </div>
+          <div class="card-body" style="padding: 0;">
+            <div id="khitanTerbaru">
+              <div style="padding: 40px; text-align: center; color: var(--gray-500);">
+                <div class="loading"></div> Memuat...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bedah Rumah Terbaru -->
+      <div class="card" style="margin-top: 20px;">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i data-lucide="home"></i>
+            Bedah Rumah Terbaru
+          </h3>
+          <button class="btn btn-secondary" onclick="showMenu('program-bedah')" style="padding: 6px 12px; font-size: 13px;">
+            Lihat Semua
+          </button>
+        </div>
+        <div class="card-body" style="padding: 0;">
+          <div id="bedahTerbaru">
+            <div style="padding: 40px; text-align: center; color: var(--gray-500);">
+              <div class="loading"></div> Memuat...
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    lucide.createIcons();
+    
+    // Load dashboard stats
+    google.script.run
+      .withSuccessHandler(stats => {
+        if (!stats) {
+          console.error('Invalid stats data');
+          return;
+        }
+        document.getElementById('statAnakYatim').textContent = stats.anakAktif?.toLocaleString('id-ID') || '0';
+        document.getElementById('statDuafa').textContent = stats.duafaAktif?.toLocaleString('id-ID') || '0';
+        document.getElementById('statTotalPenerima').textContent = (stats.anakAktif + stats.duafaAktif || 0).toLocaleString('id-ID');
+        document.getElementById('statBedahBerjalan').textContent = stats.bedahBerjalan?.toLocaleString('id-ID') || '0';
+      })
+      .withFailureHandler(error => {
+        console.error('Error loading stats:', error);
+        document.getElementById('statAnakYatim').textContent = '0';
+        document.getElementById('statDuafa').textContent = '0';
+        document.getElementById('statTotalPenerima').textContent = '0';
+        document.getElementById('statBedahBerjalan').textContent = '0';
+      })
+      .getDashboardStats();
+    
+    // Load recent programs
+    loadRecentPrograms();
+  }
+  
+  function loadRecentPrograms() {
+    // Load Recent Programs (gabungan semua jenis)
+    google.script.run
+      .withSuccessHandler(data => {
+        // Filter berdasarkan type dan render ke masing-masing container
+        const santunanData = data.filter(item => item.type === 'santunan');
+        const khitanData = data.filter(item => item.type === 'khitan');
+        const bedahData = data.filter(item => item.type === 'bedah');
+        
+        renderRecentList('santunanTerbaru', santunanData, 'nama', 'tanggal', 'jumlahPeserta', 'program-santunan');
+        renderRecentList('khitanTerbaru', khitanData, 'nama', 'tanggal', 'jumlahPeserta', 'program-khitan');
+        renderBedahRecentTable('bedahTerbaru', bedahData);
+      })
+      .withFailureHandler(() => {
+        document.getElementById('santunanTerbaru').innerHTML = '<div style="padding: 20px; text-align: center; color: var(--gray-500);">Gagal memuat data</div>';
+        document.getElementById('khitanTerbaru').innerHTML = '<div style="padding: 20px; text-align: center; color: var(--gray-500);">Gagal memuat data</div>';
+        document.getElementById('bedahTerbaru').innerHTML = '<div style="padding: 20px; text-align: center; color: var(--gray-500);">Gagal memuat data</div>';
+      })
+      .getRecentPrograms();
+  }
+  
+  function renderRecentList(elementId, data, nameField, dateField, countField, menuKey) {
+    const container = document.getElementById(elementId);
+    if (!container) {
+      console.warn('renderRecentList: container not found', elementId);
+      return;
+    }
+    
+    if (!data || data.length === 0) {
+      container.innerHTML = `
+        <div style="padding: 40px; text-align: center; color: var(--gray-500);">
+          <i data-lucide="inbox" style="width: 40px; height: 40px; margin-bottom: 12px; opacity: 0.5;"></i>
+          <p>Belum ada data</p>
+        </div>
+      `;
+      lucide.createIcons();
+      return;
+    }
+    
+    container.innerHTML = `
+      <div style="display: flex; flex-direction: column;">
+        ${data.map((item, idx) => `
+          <div onclick="showMenu('${menuKey}')" style="display: flex; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--gray-100); cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--gray-50)'" onmouseout="this.style.background='transparent'">
+            <div style="width: 40px; height: 40px; border-radius: var(--radius); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0;">
+              <span style="font-weight: 700; font-size: 14px;">${idx + 1}</span>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 600; color: var(--gray-800); margin-bottom: 2px;">${item[nameField] || '-'}</div>
+              <div style="font-size: 13px; color: var(--gray-500);">
+                ${item[dateField] ? new Date(item[dateField]).toLocaleDateString('id-ID') : '-'}
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 700; color: var(--primary);">${Number(item[countField] || 0)}</div>
+              <div style="font-size: 12px; color: var(--gray-400);">peserta</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function renderBedahRecentTable(elementId, data) {
+    const container = document.getElementById(elementId);
+    if (!container) return;
+    if (!data || data.length === 0) {
+      container.innerHTML = `<div style="padding: 40px; text-align: center; color: var(--gray-500);">Belum ada data</div>`;
+      return;
+    }
+
+    container.innerHTML = `
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Penerima</th>
+              <th>Alamat</th>
+              <th>Tgl Mulai</th>
+              <th>Tgl Selesai</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.map((item, idx) => `
+              <tr onclick="showMenu('program-bedah')" style="cursor:pointer;">
+                <td>${idx + 1}</td>
+                <td>${item.nama || '-'}</td>
+                <td>${item.lokasi || '-'}</td>
+                <td>${item.tanggal ? new Date(item.tanggal).toLocaleDateString('id-ID') : '-'}</td>
+                <td>${item.tanggalSelesai ? new Date(item.tanggalSelesai).toLocaleDateString('id-ID') : '-'}</td>
+                <td>${item.status || '-'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+  
+  function renderBedahList(elementId, data) {
+    const container = document.getElementById(elementId);
+    if (!container) {
+      console.warn('renderBedahList: container not found', elementId);
+      return;
+    }
+    
+    if (!data || data.length === 0) {
+      container.innerHTML = `
+        <div style="padding: 40px; text-align: center; color: var(--gray-500);">
+          <i data-lucide="inbox" style="width: 40px; height: 40px; margin-bottom: 12px; opacity: 0.5;"></i>
+          <p>Belum ada data</p>
+        </div>
+      `;
+      lucide.createIcons();
+      return;
+    }
+    
+    container.innerHTML = `
+      <div style="display: flex; flex-direction: column;">
+        ${data.map((item, idx) => `
+          <div onclick="showMenu('program-bedah')" style="display: flex; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--gray-100); cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--gray-50)'" onmouseout="this.style.background='transparent'">
+            <div style="width: 40px; height: 40px; border-radius: var(--radius); background: var(--warning-light); color: var(--warning); display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0;">
+              <i data-lucide="home" style="width: 20px; height: 20px;"></i>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 600; color: var(--gray-800); margin-bottom: 2px;">${item.NamaPenerima || '-'}</div>
+              <div style="font-size: 13px; color: var(--gray-500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                ${(item.AlamatLengkap || '-').substring(0, 50)}${(item.AlamatLengkap || '').length > 50 ? '...' : ''}
+              </div>
+            </div>
+            <div style="text-align: right; margin-left: 16px;">
+              <span class="badge ${item.StatusPengerjaan === 'Berjalan' ? 'badge-warning' : item.StatusPengerjaan === 'Selesai' ? 'badge-success' : 'badge-gray'}">
+                ${item.StatusPengerjaan || 'Belum'}
+              </span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    lucide.createIcons();
+  }
+  
+  // ==================== MASTER DATA & PROGRAM CONFIGS ====================
+  function getProgramConfig(program) {
+    const configs = {
+      // MASTER DATA - Penerima Tetap
+      'master-anak-yatim': {
+        type: 'master',
+        title: 'Anak Yatim',
+        icon: 'heart-handshake',
+        getFunc: 'getAnakYatim',
+        addFunc: 'addAnakYatim',
+        updateFunc: 'updateAnakYatim',
+        deleteFunc: 'deleteAnakYatim',
+        nameField: 'NamaLengkap',
+        summaryFields: ['NamaLengkap', 'Umur', 'JenisKelamin', 'Alamat', 'StatusAktif'],
+        fields: [
+          { name: 'NamaLengkap', label: 'Nama Lengkap', type: 'text', required: true },
+          { name: 'TanggalLahir', label: 'Tanggal Lahir', type: 'date', help: 'Kosongkan jika hanya tahu usia' },
+          { name: 'Umur', label: 'Usia', type: 'number', help: 'Isi manual atau otomatis jika tanggal lahir diisi' },
+          { name: 'JenisKelamin', label: 'Jenis Kelamin', type: 'select', options: ['Laki-laki', 'Perempuan'] },
+          { name: 'NamaWali', label: 'Nama Wali', type: 'text' },
+          { name: 'NoHPWali', label: 'No HP Wali', type: 'text' },
+          { name: 'Alamat', label: 'Alamat', type: 'textarea' },
+          { name: 'StatusSekolah', label: 'Status Sekolah', type: 'select', options: ['SD', 'SMP', 'SMA', 'Putus Sekolah'] },
+          { name: 'NamaSekolah', label: 'Nama Sekolah', type: 'text' },
+          { name: 'Kelas', label: 'Kelas', type: 'text' },
+          { name: 'StatusAktif', label: 'Status Aktif', type: 'select', options: ['Aktif', 'Non-Aktif'] },
+          { name: 'Keterangan', label: 'Keterangan', type: 'text' }
+        ]
+      },
+      'master-duafa': {
+        type: 'master',
+        title: 'Duafa',
+        icon: 'hand-heart',
+        getFunc: 'getDuafa',
+        addFunc: 'addDuafa',
+        updateFunc: 'updateDuafa',
+        deleteFunc: 'deleteDuafa',
+        nameField: 'NamaLengkap',
+        summaryFields: ['NamaLengkap', 'Umur', 'JenisKelamin', 'Alamat', 'Kondisi', 'StatusAktif'],
+        fields: [
+          { name: 'NamaLengkap', label: 'Nama Lengkap', type: 'text', required: true },
+          { name: 'TanggalLahir', label: 'Tanggal Lahir', type: 'date', help: 'Kosongkan jika hanya tahu usia' },
+          { name: 'Umur', label: 'Usia', type: 'number', help: 'Isi manual atau otomatis jika tanggal lahir diisi' },
+          { name: 'NoKTP', label: 'No KTP', type: 'text' },
+          { name: 'NamaKK', label: 'Nama Kepala Keluarga', type: 'text' },
+          { name: 'JmlTanggungan', label: 'Jumlah Tanggungan', type: 'number' },
+          { name: 'Alamat', label: 'Alamat', type: 'textarea' },
+          { name: 'Kondisi', label: 'Kondisi', type: 'select', options: ['Sakit Menahun', 'Lanjut Usia', 'Yatim', 'Janda', 'Fakir Miskin'] },
+          { name: 'Penghasilan', label: 'Penghasilan/Bulan', type: 'number' },
+          { name: 'SumberPenghasilan', label: 'Sumber Penghasilan', type: 'text' },
+          { name: 'StatusAktif', label: 'Status Aktif', type: 'select', options: ['Aktif', 'Non-Aktif'] },
+          { name: 'Keterangan', label: 'Keterangan', type: 'text' }
+        ]
+      },
+      // PROGRAM SESI
+      'program-santunan': {
+        type: 'program',
+        title: 'Santunan',
+        icon: 'gift',
+        getSessionsFunc: 'getSantunanSessions',
+        addSessionFunc: 'addSantunanSession',
+        updateSessionFunc: 'updateSantunanSession',
+        deleteSessionFunc: 'deleteSantunanSession',
+        nameField: 'NamaKegiatan',
+        sessionSummaryFields: ['NamaKegiatan', 'Tanggal', 'Lokasi', 'TotalAnggaran', 'JumlahPeserta'],
+        sessionFields: [
+          { name: 'NamaKegiatan', label: 'Nama Kegiatan', type: 'text', required: true },
+          { name: 'Tanggal', label: 'Tanggal', type: 'date', required: true },
+          { name: 'Lokasi', label: 'Lokasi', type: 'text' },
+          { name: 'TotalAnggaran', label: 'Total Anggaran (Rp)', type: 'number' },
+          { name: 'Keterangan', label: 'Keterangan', type: 'textarea' }
+        ],
+        participantSheet: 'SantunanPenerima',
+        participantFields: [
+          { name: 'SantunanID', label: 'ID Kegiatan', type: 'hidden' },
+          { name: 'Penerima', label: 'Penerima', type: 'select_penerima', required: true },
+          { name: 'JenisPenerima', label: 'Jenis Penerima', type: 'hidden' },
+          { name: 'PenerimaID', label: 'ID Penerima', type: 'hidden' },
+          { name: 'Status', label: 'Status', type: 'select', options: ['Diterima', 'Belum', 'Ditolak'] },
+          { name: 'Keterangan', label: 'Keterangan', type: 'text' }
+        ]
+      },
+      'program-khitan': {
+        type: 'program',
+        title: 'Khitan Masal',
+        icon: 'heart-pulse',
+        getSessionsFunc: 'getKhitanSessions',
+        addSessionFunc: 'addKhitanSession',
+        updateSessionFunc: 'updateKhitanSession',
+        deleteSessionFunc: 'deleteKhitanSession',
+        nameField: 'NamaKegiatan',
+        sessionSummaryFields: ['NamaKegiatan', 'Tanggal', 'Lokasi', 'TotalAnggaran'],
+        sessionFields: [
+          { name: 'NamaKegiatan', label: 'Nama Kegiatan', type: 'text', required: true },
+          { name: 'Tanggal', label: 'Tanggal', type: 'date', required: true },
+          { name: 'Lokasi', label: 'Lokasi', type: 'text' },
+          { name: 'TotalAnggaran', label: 'Total Anggaran (Rp)', type: 'number' },
+          { name: 'Keterangan', label: 'Keterangan', type: 'textarea' }
+        ],
+        participantSheet: 'KhitanPeserta',
+        participantFields: [
+          { name: 'KhitanSessionID', label: 'ID Kegiatan', type: 'hidden' },
+          { name: 'NamaAnak', label: 'Nama Anak', type: 'text', required: true },
+          { name: 'Umur', label: 'Umur', type: 'number' },
+          { name: 'NamaOrtu', label: 'Nama Orang Tua', type: 'text' },
+          { name: 'NoHPOrtu', label: 'No HP', type: 'text' },
+          { name: 'Alamat', label: 'Alamat', type: 'textarea' },
+          { name: 'Keterangan', label: 'Keterangan', type: 'text' }
+        ]
+      },
+      'program-bedah': {
+        type: 'program',
+        title: 'Bedah Rumah',
+        icon: 'home',
+        getSessionsFunc: 'getBedahSessions',
+        addSessionFunc: 'addBedahSession',
+        updateSessionFunc: 'updateBedahSession',
+        deleteSessionFunc: 'deleteBedahSession',
+        nameField: 'NamaPenerima',
+        sessionSummaryFields: ['NamaPenerima', 'JenisBedah', 'StatusPengerjaan', 'Anggaran', 'TanggalMulai'],
+        sessionFields: [
+          { name: 'NamaPenerima', label: 'Nama Penerima', type: 'text', required: true },
+          { name: 'NoKTP', label: 'No KTP', type: 'text' },
+          { name: 'NoHP', label: 'No HP', type: 'text' },
+          { name: 'AlamatLengkap', label: 'Alamat Lengkap', type: 'textarea' },
+          { name: 'LuasTanah', label: 'Luas Tanah (m²)', type: 'number' },
+          { name: 'LuasBangunan', label: 'Luas Bangunan (m²)', type: 'number' },
+          { name: 'StatusTanah', label: 'Status Tanah', type: 'select', options: ['Milik Sendiri', 'Milik Keluarga', 'Tanah Negara'] },
+          { name: 'JenisBedah', label: 'Jenis Bedah', type: 'select', options: ['Renovasi Ringan', 'Renovasi Berat', 'Bangun Baru'] },
+          { name: 'Anggaran', label: 'Anggaran (Rp)', type: 'number' },
+          { name: 'TanggalMulai', label: 'Tanggal Mulai', type: 'date' },
+          { name: 'TanggalSelesai', label: 'Tanggal Selesai', type: 'date' },
+          { name: 'StatusPengerjaan', label: 'Status', type: 'select', options: ['Belum', 'Berjalan', 'Selesai'] },
+          { name: 'Keterangan', label: 'Keterangan', type: 'textarea' }
+        ],
+        participantSheet: null,
+        participantFields: null
+      }
+    };
+    return configs[program];
+  }
+  
+  // ==================== MASTER DATA PAGE ====================
+  function renderMasterDataPage(program) {
+    console.log('renderMasterDataPage called with:', program);
+    const config = getProgramConfig(program);
+    if (!config) {
+      console.error('Config not found for program:', program);
+      showToast('error', 'Error', 'Program tidak ditemukan');
+      return;
+    }
+    
+    const content = document.getElementById('content');
+    currentProgram = program;
+    
+    document.getElementById('topBarActions').innerHTML = `
+      <button class="btn-add" onclick="openAddModal('${program}')">
+        <i data-lucide="plus"></i>
+        Tambah Data
+      </button>
+    `;
+    
+    content.innerHTML = `
+      <div class="search-bar">
+        <div class="search-icon-box">
+          <i data-lucide="search"></i>
+        </div>
+        <div class="search-input-wrapper">
+          <input type="text" id="searchInput" placeholder="Cari nama..." onkeyup="filterTable()">
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i data-lucide="list"></i>
+            Data ${config.title}
+          </h3>
+          <span class="badge badge-gray" id="totalCount">Loading...</span>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr id="tableHeader"></tr>
+              </thead>
+              <tbody id="tableBody">
+                <tr><td colspan="100" style="padding:40px;text-align:center;color:var(--gray-500);">
+                  <div class="loading"></div> Memuat data...
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    lucide.createIcons();
+    loadProgramData(program);
+  }
+
+  // ==================== PROGRAM SESSION PAGE ====================
+  let currentSessionId = null;
+
+  function renderProgramSessionPage(program) {
+    console.log('renderProgramSessionPage called with:', program);
+    const config = getProgramConfig(program);
+    if (!config) {
+      console.error('Config not found for program:', program);
+      showToast('error', 'Error', 'Program tidak ditemukan');
+      return;
+    }
+    
+    const content = document.getElementById('content');
+    currentProgram = program;
+    currentSessionId = null;
+    
+    document.getElementById('topBarActions').innerHTML = `
+      <button class="btn-add" onclick="openAddSessionModal('${program}')">
+        <i data-lucide="plus"></i>
+        Buat Program Baru
+      </button>
+    `;
+    
+    content.innerHTML = `
+      <div class="search-bar">
+        <div class="search-icon-box">
+          <i data-lucide="search"></i>
+        </div>
+        <div class="search-input-wrapper">
+          <input type="text" id="searchInput" placeholder="Cari nama program..." onkeyup="filterSessionTable()">
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i data-lucide="calendar"></i>
+            Daftar Program ${config.title}
+          </h3>
+          <span class="badge badge-gray" id="totalCount">Loading...</span>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr id="sessionTableHeader"></tr>
+              </thead>
+              <tbody id="sessionTableBody">
+                <tr><td colspan="100" style="padding:40px;text-align:center;color:var(--gray-500);">
+                  <div class="loading"></div> Memuat data...
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    lucide.createIcons();
+    loadProgramSessions(program);
+  }
+
+  function loadProgramSessions(program, onLoaded = null) {
+    const config = getProgramConfig(program);
+    if (!config) return;
+    
+    google.script.run
+      .withSuccessHandler(result => {
+        if (result && result.data) {
+          currentData = result.data;
+          const rendered = renderSessionTable(program);
+          if (typeof onLoaded === 'function') onLoaded(result.data, rendered);
+          lucide.createIcons();
+        } else {
+          document.getElementById('sessionTableBody').innerHTML = `
+            <tr><td colspan="100" style="padding:40px;">
+              <div class="empty-state">
+                <i data-lucide="inbox"></i>
+                <h3>Belum ada program</h3>
+                <p>Klik "Buat Program Baru" untuk menambahkan</p>
+              </div>
+            </td></tr>
+          `;
+          lucide.createIcons();
+        }
+      })
+      .withFailureHandler(error => {
+        console.error('Error loading sessions:', error);
+        document.getElementById('sessionTableBody').innerHTML = `
+          <tr><td colspan="100" style="padding:40px;">
+            <div class="empty-state">
+              <i data-lucide="alert-triangle"></i>
+              <h3>Error memuat data</h3>
+              <p>${error.message || 'Terjadi kesalahan'}</p>
+            </div>
+          </td></tr>
+        `;
+        lucide.createIcons();
+      })
+      [config.getSessionsFunc]();
+  }
+
+  function renderSessionTable(program) {
+    const config = getProgramConfig(program);
+    const headerRow = document.getElementById('sessionTableHeader');
+    const bodyRow = document.getElementById('sessionTableBody');
+    if (!headerRow || !bodyRow) {
+      return false;
+    }
+    const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+    
+    // Filter data
+    const filtered = currentData.filter(row => {
+      const nameValue = row[config.nameField] || '';
+      return nameValue.toLowerCase().includes(searchTerm);
+    });
+
+    if (program === 'program-khitan') {
+      headerRow.innerHTML = '<th>No</th><th>Nama Kegiatan</th><th>Tanggal</th><th>Lokasi</th><th>Total Anggaran</th><th>Total Peserta</th><th style="width:180px;">Aksi</th>';
+      if (filtered.length === 0) {
+        bodyRow.innerHTML = `
+          <tr><td colspan="7" style="padding:40px;">
+            <div class="empty-state"><i data-lucide="inbox"></i><h3>Tidak ada data</h3></div>
+          </td></tr>`;
+      } else {
+        bodyRow.innerHTML = filtered.map((row, idx) => `
+          <tr>
+            <td>${idx + 1}</td>
+            <td>${row.NamaKegiatan || '-'}</td>
+            <td>${row.Tanggal ? new Date(row.Tanggal).toLocaleDateString('id-ID') : '-'}</td>
+            <td>${row.Lokasi || '-'}</td>
+            <td>${formatRupiah(row.TotalAnggaran)}</td>
+            <td>${row.TotalPeserta ?? 0}</td>
+            <td>
+              <div class="cell-actions">
+                <button class="btn-icon-sm view" onclick="openSessionDetailModal('${program}', ${row.rowIndex})" title="Lihat Detail"><i data-lucide="eye" style="width:16px;height:16px;"></i></button>
+                <button class="btn-icon-sm view" onclick="openSessionDetails('${program}', ${row.rowIndex})" title="Detail Peserta"><i data-lucide="users" style="width:16px;height:16px;"></i></button>
+                <button class="btn-icon-sm edit" onclick="editSession('${program}', ${row.rowIndex})" title="Edit"><i data-lucide="pencil" style="width:16px;height:16px;"></i></button>
+                <button class="btn-icon-sm delete" onclick="deleteSession('${program}', ${row.rowIndex})" title="Hapus"><i data-lucide="trash-2" style="width:16px;height:16px;"></i></button>
+              </div>
+            </td>
+          </tr>
+        `).join('');
+      }
+      document.getElementById('totalCount').textContent = `${filtered.length} program`;
+      lucide.createIcons();
+      return true;
+    }
+
+    if (program === 'program-santunan') {
+      headerRow.innerHTML = '<th>No</th><th>Nama Kegiatan</th><th>Tanggal</th><th>Lokasi</th><th>Total Anggaran</th><th>Jumlah Peserta</th><th style="width:180px;">Aksi</th>';
+      if (filtered.length === 0) {
+        bodyRow.innerHTML = `
+          <tr><td colspan="7" style="padding:40px;">
+            <div class="empty-state"><i data-lucide="inbox"></i><h3>Tidak ada data</h3></div>
+          </td></tr>`;
+      } else {
+        bodyRow.innerHTML = filtered.map((row, idx) => `
+          <tr>
+            <td>${idx + 1}</td>
+            <td>${row.NamaKegiatan || '-'}</td>
+            <td>${row.Tanggal ? new Date(row.Tanggal).toLocaleDateString('id-ID') : '-'}</td>
+            <td>${row.Lokasi || '-'}</td>
+            <td>${formatRupiah(row.TotalAnggaran)}</td>
+            <td>${row.JumlahPeserta ?? 0}</td>
+            <td>
+              <div class="cell-actions">
+                <button class="btn-icon-sm view" onclick="openSessionDetailModal('${program}', ${row.rowIndex})" title="Lihat Detail"><i data-lucide="eye" style="width:16px;height:16px;"></i></button>
+                <button class="btn-icon-sm view" onclick="openSessionDetails('${program}', ${row.rowIndex})" title="Detail Peserta"><i data-lucide="users" style="width:16px;height:16px;"></i></button>
+                <button class="btn-icon-sm edit" onclick="editSession('${program}', ${row.rowIndex})" title="Edit"><i data-lucide="pencil" style="width:16px;height:16px;"></i></button>
+                <button class="btn-icon-sm delete" onclick="deleteSession('${program}', ${row.rowIndex})" title="Hapus"><i data-lucide="trash-2" style="width:16px;height:16px;"></i></button>
+              </div>
+            </td>
+          </tr>
+        `).join('');
+      }
+      document.getElementById('totalCount').textContent = `${filtered.length} program`;
+      lucide.createIcons();
+      return true;
+    }
+    
+    const sessionFieldsToShow = config.sessionFields
+      .filter(f => !f.readonly && f.type !== 'hidden' && (!config.sessionSummaryFields || config.sessionSummaryFields.includes(f.name)));
+
+    // Render header
+    headerRow.innerHTML = '<th>No</th>' + sessionFieldsToShow
+      .map(f => `<th>${f.label}</th>`)
+      .join('') + '<th style="width:180px;">Aksi</th>';
+    
+    // Render body
+    if (filtered.length === 0) {
+      bodyRow.innerHTML = `
+        <tr><td colspan="100" style="padding:40px;">
+          <div class="empty-state">
+            <i data-lucide="inbox"></i>
+            <h3>Tidak ada data</h3>
+          </div>
+        </td></tr>
+      `;
+    } else {
+      bodyRow.innerHTML = filtered.map((row, idx) => {
+        let tr = '<tr>';
+        tr += `<td>${idx + 1}</td>`;
+        sessionFieldsToShow
+          .forEach(f => {
+            let value = row[f.name] || '-';
+            if (f.name.includes('Tanggal') && value !== '-') {
+              value = new Date(value).toLocaleDateString('id-ID');
+            } else if (f.type === 'number' && value !== '-') {
+              value = formatRupiah(value);
+            }
+            tr += `<td>${value}</td>`;
+          });
+        
+        // Actions: View, Detail Peserta, Edit, Delete
+        const hasParticipants = config.participantSheet !== null;
+        tr += `
+          <td>
+            <div class="cell-actions">
+              <button class="btn-icon-sm view" onclick="openSessionDetailModal('${program}', ${row.rowIndex})" title="Lihat Detail">
+                <i data-lucide="eye" style="width:16px;height:16px;"></i>
+              </button>
+              ${hasParticipants ? `
+              <button class="btn-icon-sm view" onclick="openSessionDetails('${program}', ${row.rowIndex})" title="Detail Peserta">
+                <i data-lucide="users" style="width:16px;height:16px;"></i>
+              </button>` : ''}
+              <button class="btn-icon-sm edit" onclick="editSession('${program}', ${row.rowIndex})" title="Edit">
+                <i data-lucide="pencil" style="width:16px;height:16px;"></i>
+              </button>
+              <button class="btn-icon-sm delete" onclick="deleteSession('${program}', ${row.rowIndex})" title="Hapus">
+                <i data-lucide="trash-2" style="width:16px;height:16px;"></i>
+              </button>
+            </div>
+          </td>
+        </tr>`;
+        return tr;
+      }).join('');
+    }
+    
+    document.getElementById('totalCount').textContent = `${filtered.length} program`;
+    lucide.createIcons();
+    return true;
+  }
+
+  function filterSessionTable() {
+    if (currentProgram && currentProgram.startsWith('program-')) {
+      renderSessionTable(currentProgram);
+    }
+  }
+  
+  function loadProgramData(program) {
+    const config = getProgramConfig(program);
+    if (!config) return;
+
+    console.log('loadProgramData:', { program, getFunc: config.getFunc });
+    
+    google.script.run
+      .withSuccessHandler(result => {
+        if (result == null) {
+          console.error('Backend returned null/undefined for:', config.getFunc);
+          showToast('error', 'Gagal memuat data', `Backend mengembalikan kosong (null) dari fungsi: ${config.getFunc}`);
+          document.getElementById('tableBody').innerHTML = `
+            <tr><td colspan="100" style="padding:40px;">
+              <div class="empty-state">
+                <i data-lucide="alert-triangle"></i>
+                <h3>Gagal memuat data</h3>
+                <p>Backend mengembalikan kosong (null). Fungsi: ${config.getFunc}</p>
+              </div>
+            </td></tr>
+          `;
+          lucide.createIcons();
+          return;
+        }
+
+        if (result && result.data) {
+          currentData = result.data;
+          currentHeaders = config.fields.map(f => f.name);
+          renderTable(program);
+          lucide.createIcons();
+        } else {
+          console.error('Invalid result:', result);
+          showToast('error', 'Gagal memuat data', `Response tidak valid dari fungsi: ${config.getFunc}`);
+          document.getElementById('tableBody').innerHTML = `
+            <tr><td colspan="100" style="padding:40px;">
+              <div class="empty-state">
+                <i data-lucide="alert-triangle"></i>
+                <h3>Gagal memuat data</h3>
+                <p>Silakan refresh halaman atau coba lagi</p>
+              </div>
+            </td></tr>
+          `;
+          lucide.createIcons();
+        }
+      })
+      .withFailureHandler(error => {
+        console.error('Error loading data:', error);
+        showToast('error', 'Gagal memuat data', `Error dari fungsi: ${config.getFunc}`);
+        document.getElementById('tableBody').innerHTML = `
+          <tr><td colspan="100" style="padding:40px;">
+            <div class="empty-state">
+              <i data-lucide="alert-triangle"></i>
+              <h3>Error memuat data</h3>
+              <p>${error.message || 'Terjadi kesalahan saat memuat data'}</p>
+            </div>
+          </td></tr>
+        `;
+        lucide.createIcons();
+      })
+      [config.getFunc]();
+  }
+  
+  function renderTable(program) {
+    const config = getProgramConfig(program);
+    const headerRow = document.getElementById('tableHeader');
+    const bodyRow = document.getElementById('tableBody');
+    const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+    
+    // Filter data
+    const filtered = currentData.filter(row => {
+      const nameValue = row[config.nameField] || '';
+      return nameValue.toLowerCase().includes(searchTerm);
+    });
+    
+    const fieldsToShow = config.fields
+      .filter(f => !f.readonly && f.name !== 'ID' && (!config.summaryFields || config.summaryFields.includes(f.name)));
+
+    // Render header
+    headerRow.innerHTML = '<th>No</th>' + fieldsToShow
+      .map(f => `<th>${f.label}</th>`)
+      .join('') + '<th style="width:150px;">Aksi</th>';
+    
+    // Render body
+    if (filtered.length === 0) {
+      bodyRow.innerHTML = `
+        <tr>
+          <td colspan="${config.fields.length + 1}" style="padding:40px;">
+            <div class="empty-state">
+              <i data-lucide="inbox"></i>
+              <h3>Tidak ada data</h3>
+              <p>Belum ada data ${config.title} atau hasil pencarian tidak ditemukan</p>
+            </div>
+          </td>
+        </tr>
+      `;
+    } else {
+      bodyRow.innerHTML = filtered.map((row, idx) => {
+        let tr = '<tr>';
+        tr += `<td>${idx + 1}</td>`;
+        fieldsToShow
+          .forEach(f => {
+            let value = row[f.name] || '-';
+            if (f.name === 'Nominal' || f.name === 'Anggaran' || f.name === 'Penghasilan') {
+              value = formatRupiah(value);
+            } else if (f.name.includes('Tanggal') && value !== '-') {
+              value = new Date(value).toLocaleDateString('id-ID');
+            } else if (f.name === 'StatusAktif') {
+              value = value === 'Aktif'
+                ? '<span class="badge badge-success">Aktif</span>'
+                : '<span class="badge badge-orange">Non-Aktif</span>';
+            }
+            tr += `<td>${value}</td>`;
+          });
+        tr += `
+          <td>
+            <div class="cell-actions">
+              <button class="btn-icon-sm view" onclick="openDetailModal('${program}', ${row.rowIndex})" title="Lihat Detail">
+                <i data-lucide="eye" style="width:16px;height:16px;"></i>
+              </button>
+              <button class="btn-icon-sm edit" onclick="editRow('${program}', ${row.rowIndex})">
+                <i data-lucide="pencil" style="width:16px;height:16px;"></i>
+              </button>
+              <button class="btn-icon-sm delete" onclick="deleteRow('${program}', ${row.rowIndex})">
+                <i data-lucide="trash-2" style="width:16px;height:16px;"></i>
+              </button>
+            </div>
+          </td>
+        </tr>`;
+        return tr;
+      }).join('');
+    }
+    
+    document.getElementById('totalCount').textContent = `${filtered.length} data`;
+    lucide.createIcons();
+  }
+  
+  function filterTable() {
+    renderTable(currentProgram);
+  }
+
+  function formatFieldValue(field, value) {
+    if (value === null || value === undefined || value === '') return '-';
+    if (field && ['Nominal', 'Anggaran', 'Penghasilan', 'TotalAnggaran'].includes(field.name)) {
+      return formatRupiah(value);
+    }
+    if (field && field.name === 'Umur') return String(value).includes('tahun') ? value : `${value} tahun`;
+    if (field && field.name && field.name.includes('Tanggal')) return new Date(value).toLocaleDateString('id-ID');
+    return value;
+  }
+
+  function openDetailModal(program, rowIndex) {
+    const config = getProgramConfig(program);
+    const row = currentData.find(r => r.rowIndex === rowIndex);
+    if (!row) return;
+
+    const fields = config.fields.filter(f => !f.readonly && f.name !== 'ID');
+    const detailRows = `
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          ${fields.filter((f, i) => i % 2 === 0).map(f => `
+            <div style="padding:10px 0;border-bottom:1px solid var(--gray-100);">
+              <div style="font-size:12px;color:var(--gray-500);">${f.label}</div>
+              <div style="font-weight:600;color:var(--gray-800);">${formatFieldValue(f, row[f.name])}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div>
+          ${fields.filter((f, i) => i % 2 === 1).map(f => `
+            <div style="padding:10px 0;border-bottom:1px solid var(--gray-100);">
+              <div style="font-size:12px;color:var(--gray-500);">${f.label}</div>
+              <div style="font-weight:600;color:var(--gray-800);">${formatFieldValue(f, row[f.name])}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    openModal(`Detail ${config.title}`, detailRows, null);
+  }
+
+  function openSessionDetailModal(program, rowIndex) {
+    const config = getProgramConfig(program);
+    const row = currentData.find(r => r.rowIndex === rowIndex);
+    if (!row) return;
+
+    const fields = config.sessionFields.filter(f => !f.readonly && f.type !== 'hidden');
+    const detailRows = `
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          ${fields.filter((f, i) => i % 2 === 0).map(f => `
+            <div style="padding:10px 0;border-bottom:1px solid var(--gray-100);">
+              <div style="font-size:12px;color:var(--gray-500);">${f.label}</div>
+              <div style="font-weight:600;color:var(--gray-800);">${formatFieldValue(f, row[f.name])}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div>
+          ${fields.filter((f, i) => i % 2 === 1).map(f => `
+            <div style="padding:10px 0;border-bottom:1px solid var(--gray-100);">
+              <div style="font-size:12px;color:var(--gray-500);">${f.label}</div>
+              <div style="font-weight:600;color:var(--gray-800);">${formatFieldValue(f, row[f.name])}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    openModal(`Detail Program ${config.title}`, detailRows, null);
+  }
+  
+  // ==================== MODAL FORMS ====================
+  function openAddModal(program) {
+    const config = getProgramConfig(program);
+    const formHtml = generateFormHtml(config.fields, 'new_');
+    
+    openModal(`Tambah Data ${config.title}`, formHtml, () => {
+      submitAdd(program);
+    });
+  }
+  
+  function openEditModal(program, rowIndex) {
+    const config = getProgramConfig(program);
+    const row = currentData.find(r => r.rowIndex === rowIndex);
+    if (!row) return;
+    
+    const formHtml = generateFormHtml(config.fields, 'edit_', row);
+    
+    openModal(`Edit Data ${config.title}`, formHtml, () => {
+      submitEdit(program, rowIndex);
+    });
+  }
+  
+  function generateFormHtml(fields, prefix, values = {}) {
+    return `
+      <div class="form-grid">
+        ${fields.map(f => {
+          const value = values[f.name] || '';
+          const required = f.required ? '<span class="required">*</span>' : '';
+          const onchange = f.name === 'TanggalLahir' ? `onchange="hitungUmur('${prefix}')"` : '';
+          const helpText = f.help ? `<small class="form-help">${f.help}</small>` : '';
+          const placeholder = f.placeholder || '';
+          
+          let input = '';
+          if (f.type === 'hidden') {
+            input = `<input type="hidden" id="${prefix}${f.name}" value="${value}">`;
+          } else if (f.type === 'textarea') {
+            input = `<textarea id="${prefix}${f.name}" rows="3" ${f.readonly ? 'readonly' : ''} placeholder="${placeholder}">${value}</textarea>`;
+          } else if (f.type === 'select') {
+            input = `
+              <select id="${prefix}${f.name}" ${f.readonly ? 'readonly' : ''}>
+                ${f.options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('')}
+              </select>
+            `;
+          } else if (f.type === 'select_penerima') {
+            input = `
+              <select id="${prefix}${f.name}">
+                <option value="">Memuat daftar penerima...</option>
+              </select>
+            `;
+          } else if (f.name === 'Umur') {
+            // Special handling for Umur - number input with suffix
+            input = `<input type="number" id="${prefix}${f.name}" value="${value}" ${f.readonly ? 'readonly' : ''} placeholder="Contoh: 12" style="width: calc(100% - 60px); display: inline-block;"><span style="margin-left: 8px; color: var(--gray-500);">tahun</span>`;
+          } else {
+            input = `<input type="${f.type}" id="${prefix}${f.name}" value="${value}" ${f.readonly ? 'readonly' : ''} ${onchange} placeholder="${placeholder}">`;
+          }
+          
+          return `
+            ${f.type === 'hidden' ? input : `
+            <div class="form-group ${f.type === 'textarea' ? 'full-width' : ''}">
+              <label>${f.label} ${required}</label>
+              ${input}
+              ${helpText}
+            </div>
+            `}
+          `;
+        }).join('')}
+      </div>
+    `;
+  }
+  
+  function hitungUmur(prefix) {
+    const tglLahir = document.getElementById(prefix + 'TanggalLahir').value;
+    const umurInput = document.getElementById(prefix + 'Umur');
+    if (!umurInput) return;
+    
+    // Jika tanggal lahir diisi, hitung otomatis
+    if (tglLahir) {
+      const lahir = new Date(tglLahir);
+      const today = new Date();
+      let umur = today.getFullYear() - lahir.getFullYear();
+      const m = today.getMonth() - lahir.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < lahir.getDate())) umur--;
+      umurInput.value = umur;
+    }
+    // Jika tanggal lahir kosong, biarkan user isi manual
+  }
+  
+  function submitAdd(program) {
+    if (!beginModalSubmit()) return;
+    const config = getProgramConfig(program);
+    const formData = {};
+    
+    config.fields.forEach(f => {
+      const el = document.getElementById('new_' + f.name);
+      formData[f.name] = el ? el.value : '';
+    });
+    
+    // Validate required
+    const requiredField = config.fields.find(f => f.required);
+    if (requiredField && !formData[requiredField.name]) {
+      showToast('error', 'Validasi Gagal', requiredField.label + ' harus diisi');
+      endModalSubmit();
+      return;
+    }
+    
+    google.script.run.withSuccessHandler(result => {
+      if (result.success) {
+        closeModal();
+        showToast('success', 'Berhasil', result.message);
+        loadProgramData(program);
+      } else {
+        showToast('error', 'Gagal', result.message);
+        endModalSubmit();
+      }
+    }).withFailureHandler(error => {
+      showToast('error', 'Gagal', error.message || 'Terjadi kesalahan');
+      endModalSubmit();
+    })[config.addFunc](formData);
+  }
+  
+  function editRow(program, rowIndex) {
+    openEditModal(program, rowIndex);
+  }
+  
+  function submitEdit(program, rowIndex) {
+    if (!beginModalSubmit()) return;
+    const config = getProgramConfig(program);
+    const row = currentData.find(r => r.rowIndex === rowIndex);
+    if (!row) return;
+    
+    config.fields.forEach(f => {
+      const el = document.getElementById('edit_' + f.name);
+      if (el) row[f.name] = el.value;
+    });
+    
+    google.script.run.withSuccessHandler(result => {
+      if (result.success) {
+        closeModal();
+        showToast('success', 'Berhasil', result.message);
+        loadProgramData(program);
+      } else {
+        showToast('error', 'Gagal', result.message);
+        endModalSubmit();
+      }
+    }).withFailureHandler(error => {
+      showToast('error', 'Gagal', error.message || 'Terjadi kesalahan');
+      endModalSubmit();
+    })[config.updateFunc](row, rowIndex);
+  }
+  
+  function deleteRow(program, rowIndex) {
+    const config = getProgramConfig(program);
+    const row = currentData.find(r => r.rowIndex === rowIndex);
+    const name = row ? row[config.nameField] : 'data ini';
+    
+    if (confirm(`Yakin ingin menghapus "${name}"?`)) {
+      google.script.run.withSuccessHandler(result => {
+        if (result.success) {
+          showToast('success', 'Berhasil', result.message);
+          loadProgramData(program);
+        } else {
+          showToast('error', 'Gagal', result.message);
+        }
+      })[config.deleteFunc](rowIndex);
+    }
+  }
+  
+  // ==================== LAPORAN ====================
+  function renderLaporan() {
+    console.log('renderLaporan called');
+    const content = document.getElementById('content');
+    
+    document.getElementById('topBarActions').innerHTML = `
+      <button class="btn btn-secondary" onclick="exportLaporanCSV()">
+        <i data-lucide="download"></i>
+        Export CSV
+      </button>
+      <button class="btn btn-secondary" onclick="window.print()">
+        <i data-lucide="printer"></i>
+        Print
+      </button>
+    `;
+    
+    content.innerHTML = `
+      <!-- Filter Section -->
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-body">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; align-items: end;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Jenis Laporan</label>
+              <select id="laporanFilter" onchange="loadLaporan()">
+                <option value="Anak Yatim">Data Anak Yatim</option>
+                <option value="Duafa">Data Duafa</option>
+                <option value="Program Santunan">Program Santunan</option>
+                <option value="Khitan Masal">Khitan Masal</option>
+                <option value="Bedah Rumah">Bedah Rumah</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Status Aktif</label>
+              <select id="laporanStatus" onchange="loadLaporan()">
+                <option value="">Semua Status</option>
+                <option value="Aktif">Aktif</option>
+                <option value="Non-Aktif">Non-Aktif</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Periode</label>
+              <select id="laporanPeriode" onchange="loadLaporan()">
+                <option value="">Semua Periode</option>
+                <option value="${new Date().getFullYear()}">Tahun ${new Date().getFullYear()}</option>
+                <option value="${new Date().getFullYear()-1}">Tahun ${new Date().getFullYear()-1}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Data Table -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i data-lucide="file-text"></i>
+            <span id="laporanTitle">Laporan Semua Data</span>
+          </h3>
+          <span class="badge badge-gray" id="laporanTotal">Loading...</span>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <div class="table-container">
+            <table>
+              <thead id="laporanHeader">
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Usia</th>
+                  <th>Jenis Kelamin</th>
+                  <th>Alamat</th>
+                  <th>Status</th>
+                  <th>Keterangan</th>
+                </tr>
+              </thead>
+              <tbody id="laporanBody">
+                <tr><td colspan="7" style="padding:40px;text-align:center;color:var(--gray-500);">
+                  <div class="loading"></div> Memuat laporan...
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    lucide.createIcons();
+    loadLaporan();
+  }
+  
+  function loadLaporan() {
+    const filter = document.getElementById('laporanFilter')?.value || 'Anak Yatim';
+    const status = document.getElementById('laporanStatus')?.value || '';
+    const periode = document.getElementById('laporanPeriode')?.value || '';
+    const tbody = document.getElementById('laporanBody');
+    const titleEl = document.getElementById('laporanTitle');
+    
+    titleEl.textContent = `Laporan ${filter}`;
+    
+    if (filter === 'Program Santunan' || filter === 'Khitan Masal' || filter === 'Bedah Rumah') {
+      loadProgramLaporan(filter, periode, tbody);
+      return;
+    }
+
+    google.script.run
+      .withSuccessHandler(result => {
+        const sourceRows = Array.isArray(result?.data) ? result.data : [];
+        let data = sourceRows.map(r => ({
+          Nama: r.NamaLengkap || '-',
+          Usia: r.Umur || '-',
+          JenisKelamin: r.JenisKelamin || '-',
+          Alamat: r.Alamat || '-',
+          Status: r.StatusAktif || '-',
+          Keterangan: r.Keterangan || '-',
+          Tanggal: r.TanggalLahir || ''
+        }));
+
+        if (status) data = data.filter(r => r.Status === status);
+        if (periode) {
+          data = data.filter(r => {
+            if (!r.Tanggal) return false;
+            return new Date(r.Tanggal).getFullYear().toString() === periode;
+          });
+        }
+
+        if (filter === 'Duafa') {
+          data = data.map(r => ({ ...r, JenisKelamin: '-' }));
+        }
+
+        document.getElementById('laporanTotal').textContent = `${data.length} data`;
+        if (data.length === 0) {
+          tbody.innerHTML = `
+            <tr><td colspan="7" style="padding:40px;">
+              <div class="empty-state">
+                <i data-lucide="inbox"></i>
+                <h3>Tidak ada data</h3>
+              </div>
+            </td></tr>
+          `;
+        } else {
+          tbody.innerHTML = data.map((row, idx) => `
+            <tr>
+              <td>${idx + 1}</td>
+              <td><strong>${row.Nama}</strong></td>
+              <td>${row.Usia}</td>
+              <td>${row.JenisKelamin}</td>
+              <td>${row.Alamat}</td>
+              <td>${row.Status}</td>
+              <td>${row.Keterangan}</td>
+            </tr>
+          `).join('');
+        }
+        lucide.createIcons();
+      })
+      .withFailureHandler(error => {
+        console.error('Error loading laporan:', error);
+        tbody.innerHTML = `
+          <tr><td colspan="7" style="padding:40px;">
+            <div class="empty-state">
+              <i data-lucide="alert-triangle"></i>
+              <h3>Error memuat laporan</h3>
+            </div>
+          </td></tr>
+        `;
+        lucide.createIcons();
+      })
+      [filter === 'Duafa' ? 'getDuafa' : 'getAnakYatim']();
+  }
+
+  function loadProgramLaporan(filter, periode, tbody) {
+    google.script.run
+      .withSuccessHandler(result => {
+        const rows = Array.isArray(result?.data) ? result.data : [];
+        let data = [];
+        if (filter === 'Program Santunan') {
+          data = rows.map(r => ({
+            Nama: r.NamaKegiatan || '-',
+            Usia: r.JumlahPeserta ?? 0,
+            JenisKelamin: '-',
+            Alamat: r.Lokasi || '-',
+            Status: '-',
+            Keterangan: formatRupiah(r.TotalAnggaran || 0),
+            Tanggal: r.Tanggal || ''
+          }));
+        } else if (filter === 'Khitan Masal') {
+          data = rows.map(r => ({
+            Nama: r.NamaKegiatan || '-',
+            Usia: r.TotalPeserta ?? 0,
+            JenisKelamin: '-',
+            Alamat: r.Lokasi || '-',
+            Status: '-',
+            Keterangan: formatRupiah(r.TotalAnggaran || 0),
+            Tanggal: r.Tanggal || ''
+          }));
+        } else {
+          data = rows.map(r => ({
+            Nama: r.NamaPenerima || '-',
+            Usia: '-',
+            JenisKelamin: '-',
+            Alamat: r.AlamatLengkap || '-',
+            Status: r.StatusPengerjaan || '-',
+            Keterangan: formatRupiah(r.Anggaran || 0),
+            Tanggal: r.TanggalMulai || ''
+          }));
+        }
+
+        if (periode) {
+          data = data.filter(r => r.Tanggal && new Date(r.Tanggal).getFullYear().toString() === periode);
+        }
+
+        document.getElementById('laporanTotal').textContent = `${data.length} data`;
+        tbody.innerHTML = data.length ? data.map((row, idx) => `
+          <tr>
+            <td>${idx + 1}</td><td><strong>${row.Nama}</strong></td><td>${row.Usia}</td><td>${row.JenisKelamin}</td>
+            <td>${row.Alamat}</td><td>${row.Status}</td><td>${row.Keterangan}</td>
+          </tr>
+        `).join('') : `<tr><td colspan="7" style="padding:40px;"><div class="empty-state"><h3>Tidak ada data</h3></div></td></tr>`;
+      })
+      .withFailureHandler(() => {
+        tbody.innerHTML = `<tr><td colspan="7" style="padding:40px;"><div class="empty-state"><h3>Error memuat laporan</h3></div></td></tr>`;
+      })
+      [filter === 'Program Santunan' ? 'getSantunanSessions' : filter === 'Khitan Masal' ? 'getKhitanSessions' : 'getBedahSessions']();
+  }
+  
+  function exportLaporanCSV() {
+    const filter = document.getElementById('laporanFilter')?.value || 'Anak Yatim';
+    const status = document.getElementById('laporanStatus')?.value || '';
+    const periode = document.getElementById('laporanPeriode')?.value || '';
+    
+    google.script.run.withSuccessHandler(result => {
+      const sourceRows = Array.isArray(result?.data) ? result.data : [];
+      let data = sourceRows.map(r => ({
+        Nama: r.NamaLengkap || '-',
+        Usia: r.Umur || '-',
+        JenisKelamin: r.JenisKelamin || '-',
+        Alamat: r.Alamat || '-',
+        Status: r.StatusAktif || '-',
+        Keterangan: r.Keterangan || '-',
+        Tanggal: r.TanggalLahir || ''
+      }));
+
+      if (status) data = data.filter(r => r.Status === status);
+      if (periode) {
+        data = data.filter(r => {
+          if (!r.Tanggal) return false;
+          return new Date(r.Tanggal).getFullYear().toString() === periode;
+        });
+      }
+
+      let csv = [];
+      csv.push(`LAPORAN ${filter.toUpperCase()}`);
+      csv.push(`Generated: ${new Date().toLocaleString('id-ID')}`);
+      csv.push('');
+      csv.push(['No', 'Nama', 'Usia', 'Jenis Kelamin', 'Alamat', 'Status', 'Keterangan'].join(','));
+      data.forEach((row, idx) => {
+        csv.push([
+          idx + 1,
+          `"${(row.Nama || '').replace(/"/g, '""')}"`,
+          row.Usia,
+          `"${(row.JenisKelamin || '').replace(/"/g, '""')}"`,
+          `"${(row.Alamat || '').replace(/"/g, '""')}"`,
+          row.Status,
+          `"${(row.Keterangan || '').replace(/"/g, '""')}"`
+        ].join(','));
+      });
+
+      const blob = new Blob(['\uFEFF' + csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `laporan_${filter.toLowerCase().replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.csv`;
+      link.click();
+      showToast('success', 'Export Berhasil', 'File laporan sedang diunduh');
+    })
+    .withFailureHandler(error => {
+      showToast('error', 'Export Gagal', error.message || 'Terjadi kesalahan');
+    })
+    [filter === 'Duafa' ? 'getDuafa' : 'getAnakYatim']();
+  }
+  
+  // ==================== PROGRAM SESSION MODALS ====================
+  function openAddSessionModal(program) {
+    const config = getProgramConfig(program);
+    const formHtml = generateFormHtml(config.sessionFields, 'session_');
+    
+    openModal(`Buat Program ${config.title} Baru`, formHtml, () => {
+      submitAddSession(program);
+    });
+  }
+
+  function editSession(program, rowIndex) {
+    const config = getProgramConfig(program);
+    const row = currentData.find(r => r.rowIndex === rowIndex);
+    if (!row) return;
+    
+    const formHtml = generateFormHtml(config.sessionFields, 'edit_session_', row);
+    
+    openModal(`Edit Program ${config.title}`, formHtml, () => {
+      submitEditSession(program, rowIndex);
+    });
+  }
+
+  function deleteSession(program, rowIndex) {
+    const config = getProgramConfig(program);
+    const row = currentData.find(r => r.rowIndex === rowIndex);
+    if (!row) return;
+    
+    if (confirm(`Hapus program "${row[config.nameField]}"?`)) {
+      google.script.run
+        .withSuccessHandler(result => {
+          if (result.success) {
+            showToast('success', 'Berhasil', result.message);
+            loadProgramSessions(program);
+          } else {
+            showToast('error', 'Gagal', result.message);
+          }
+        })[config.deleteSessionFunc](rowIndex);
+    }
+  }
+
+  function submitAddSession(program) {
+    if (!beginModalSubmit()) return;
+    const config = getProgramConfig(program);
+    const data = {};
+    
+    config.sessionFields.forEach(f => {
+      if (f.type !== 'hidden') {
+        data[f.name] = document.getElementById(`session_${f.name}`)?.value || '';
+      }
+    });
+    
+    // Validasi
+    const requiredFields = config.sessionFields.filter(f => f.required);
+    for (let f of requiredFields) {
+      if (!data[f.name]) {
+        showToast('warning', 'Validasi', `Field "${f.label}" wajib diisi`);
+        endModalSubmit();
+        return;
+      }
+    }
+    
+    google.script.run
+      .withSuccessHandler(result => {
+        closeModal();
+        if (result.success) {
+          showToast('success', 'Berhasil', result.message);
+          if (program === 'program-santunan' && result.insertedId) {
+            openBulkSantunanParticipantModal(result.insertedId);
+          } else {
+            loadProgramSessions(program);
+          }
+        } else {
+          showToast('error', 'Gagal', result.message);
+          endModalSubmit();
+        }
+      }).withFailureHandler(error => {
+        showToast('error', 'Gagal', error.message || 'Terjadi kesalahan');
+        endModalSubmit();
+      })[config.addSessionFunc](data);
+  }
+
+  function openBulkSantunanParticipantModal(sessionId) {
+    google.script.run
+      .withSuccessHandler(list => {
+        const rows = (list || []).map((item, index) => `
+          <label style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-100);cursor:pointer;">
+            <input type="checkbox" class="bulk-penerima-check" value="${item.Jenis}|${item.ID}" style="width:16px;height:16px;min-width:16px;max-width:16px;flex:0 0 16px;margin-top:3px;">
+            <div>
+              <div style="font-weight:600;">${index + 1}. ${item.Nama} <span class="badge badge-gray">${item.Jenis === 'AnakYatim' ? 'Anak Yatim' : 'Duafa'}</span></div>
+              <div style="font-size:12px;color:var(--gray-500);">${item.Umur ? item.Umur + ' th' : '-'} | ${item.Alamat || '-'}</div>
+            </div>
+          </label>
+        `).join('');
+
+        const html = `
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <strong>Pilih Penerima Santunan</strong>
+            <button class="btn btn-secondary" onclick="toggleSelectAllPenerima()">Pilih Semua / Batal</button>
+          </div>
+          <div style="max-height:360px;overflow:auto;border:1px solid var(--gray-200);border-radius:10px;padding:10px;">
+            ${rows || '<div style="color:var(--gray-500);">Tidak ada penerima aktif</div>'}
+          </div>
+        `;
+
+        openModal('Tambah Peserta Santunan', html, () => submitBulkSantunanParticipant(sessionId));
+      })
+      .withFailureHandler(err => {
+        showToast('error', 'Gagal', 'Tidak bisa memuat daftar penerima aktif');
+        loadProgramSessions('program-santunan');
+        console.error(err);
+      })
+      .getAktifPenerima(sessionId);
+  }
+
+  function toggleSelectAllPenerima() {
+    const checks = Array.from(document.querySelectorAll('.bulk-penerima-check'));
+    if (!checks.length) return;
+    const allChecked = checks.every(ch => ch.checked);
+    checks.forEach(ch => ch.checked = !allChecked);
+  }
+
+  function submitBulkSantunanParticipant(sessionId) {
+    if (!beginModalSubmit()) return;
+    const selected = Array.from(document.querySelectorAll('.bulk-penerima-check:checked'))
+      .map(ch => {
+        const [JenisPenerima, PenerimaID] = ch.value.split('|');
+        return { JenisPenerima, PenerimaID, Status: 'Diterima', Keterangan: '' };
+      });
+
+    if (!selected.length) {
+      showToast('warning', 'Validasi', 'Pilih minimal 1 peserta');
+      endModalSubmit();
+      return;
+    }
+
+    google.script.run
+      .withSuccessHandler(result => {
+        if (result.success) {
+          closeModal();
+          showToast('success', 'Berhasil', result.message || `${selected.length} peserta ditambahkan`);
+          openSessionDetailsById('program-santunan', sessionId);
+        } else {
+          showToast('error', 'Gagal', result.message || 'Gagal menambahkan peserta');
+          endModalSubmit();
+        }
+      })
+      .withFailureHandler(err => {
+        showToast('error', 'Gagal', err.message || 'Terjadi kesalahan');
+        console.error(err);
+        endModalSubmit();
+      })
+      .addMultipleSantunanPenerima(sessionId, selected);
+  }
+
+  function openSessionDetailsById(program, sessionId) {
+    const config = getProgramConfig(program);
+    if (!config) return;
+
+    google.script.run
+      .withSuccessHandler(result => {
+        const sessions = Array.isArray(result?.data) ? result.data : [];
+        const row = sessions.find(r => String(r.ID) === String(sessionId));
+        if (!row) {
+          showToast('warning', 'Info', 'Peserta tersimpan, tapi sesi tidak ditemukan di daftar');
+          renderProgramSessionPage(program);
+          return;
+        }
+        currentData = sessions;
+        openSessionDetails(program, row.rowIndex);
+      })
+      .withFailureHandler(err => {
+        showToast('error', 'Gagal', err.message || 'Gagal memuat detail sesi');
+      })
+      [config.getSessionsFunc]();
+  }
+
+  function submitEditSession(program, rowIndex) {
+    if (!beginModalSubmit()) return;
+    const config = getProgramConfig(program);
+    const data = {};
+    
+    config.sessionFields.forEach(f => {
+      if (f.type !== 'hidden') {
+        data[f.name] = document.getElementById(`edit_session_${f.name}`)?.value || '';
+      }
+    });
+    
+    google.script.run
+      .withSuccessHandler(result => {
+        closeModal();
+        if (result.success) {
+          showToast('success', 'Berhasil', result.message);
+          loadProgramSessions(program);
+        } else {
+          showToast('error', 'Gagal', result.message);
+          endModalSubmit();
+        }
+      }).withFailureHandler(error => {
+        showToast('error', 'Gagal', error.message || 'Terjadi kesalahan');
+        endModalSubmit();
+      })[config.updateSessionFunc](data, rowIndex);
+  }
+
+  function openSessionDetails(program, rowIndex) {
+    const config = getProgramConfig(program);
+    const session = currentData.find(r => r.rowIndex === rowIndex);
+    if (!session) return;
+    
+    currentSessionId = session.ID;
+    const content = document.getElementById('content');
+    
+    document.getElementById('topBarActions').innerHTML = `
+      <button class="btn btn-secondary" onclick="renderProgramSessionPage('${program}')">
+        <i data-lucide="arrow-left"></i>
+        Kembali
+      </button>
+      <button class="btn-add" onclick="openAddParticipantModal('${program}', ${currentSessionId})">
+        <i data-lucide="plus"></i>
+        Tambah Peserta
+      </button>
+    `;
+    
+    content.innerHTML = `
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i data-lucide="users"></i>
+            Peserta: ${session[config.nameField]}
+          </h3>
+          <span class="badge badge-gray" id="participantCount">Loading...</span>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr id="participantTableHeader"></tr>
+              </thead>
+              <tbody id="participantTableBody">
+                <tr><td colspan="100" style="padding:40px;text-align:center;color:var(--gray-500);">
+                  <div class="loading"></div> Memuat peserta...
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    lucide.createIcons();
+    loadParticipants(program, currentSessionId);
+  }
+
+  function loadParticipants(program, sessionId) {
+    const config = getProgramConfig(program);
+    if (!config.participantFields) return;
+    
+    // This will need to be implemented in Code.gs
+    google.script.run
+      .withSuccessHandler(result => {
+        const participantData = Array.isArray(result) ? result : (Array.isArray(result?.data) ? result.data : []);
+        if (participantData.length > 0) {
+          window.currentParticipants = participantData;
+          renderParticipantsTable(program, participantData);
+          lucide.createIcons();
+        } else {
+          document.getElementById('participantTableBody').innerHTML = `
+            <tr><td colspan="100" style="padding:40px;">
+              <div class="empty-state">
+                <i data-lucide="inbox"></i>
+                <h3>Belum ada peserta</h3>
+                <p>Klik "Tambah Peserta" untuk menambahkan</p>
+              </div>
+            </td></tr>
+          `;
+          document.getElementById('participantCount').textContent = '0 peserta';
+          lucide.createIcons();
+        }
+      })
+      .withFailureHandler(error => {
+        document.getElementById('participantTableBody').innerHTML = `
+          <tr><td colspan="100" style="padding:40px;">
+            <div class="empty-state">
+              <i data-lucide="alert-triangle"></i>
+              <h3>Error memuat peserta</h3>
+            </div>
+          </td></tr>
+        `;
+        lucide.createIcons();
+      })
+      .getParticipants(config.participantSheet, sessionId);
+  }
+
+  function renderParticipantsTable(program, data) {
+    const config = getProgramConfig(program);
+    const headerRow = document.getElementById('participantTableHeader');
+    const bodyRow = document.getElementById('participantTableBody');
+
+    if (config.participantSheet === 'SantunanPenerima') {
+      headerRow.innerHTML = `
+        <th>No</th>
+        <th>Nama</th>
+        <th>Kategori</th>
+        <th>Usia</th>
+        <th>Alamat</th>
+        <th>Aksi</th>
+      `;
+
+      if (data.length === 0) {
+        bodyRow.innerHTML = `
+          <tr><td colspan="6" style="padding:40px;">
+            <div class="empty-state">
+              <i data-lucide="inbox"></i>
+              <h3>Belum ada peserta</h3>
+            </div>
+          </td></tr>
+        `;
+      } else {
+        bodyRow.innerHTML = data.map((row, idx) => `
+          <tr>
+            <td>${idx + 1}</td>
+            <td>${row.NamaLengkap || '-'}</td>
+            <td>${row.Kategori || (row.JenisPenerima === 'AnakYatim' ? 'Anak Yatim' : 'Duafa')}</td>
+            <td>${row.Usia || '-'}</td>
+            <td>${row.Alamat || '-'}</td>
+            <td>
+              <div class="cell-actions">
+                <button class="btn-icon-sm delete" onclick="deleteParticipant('${program}', ${row.rowIndex})" title="Hapus">
+                  <i data-lucide="trash-2" style="width:16px;height:16px;"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      document.getElementById('participantCount').textContent = `${data.length} peserta`;
+      return;
+    }
+    
+    // Render header
+    headerRow.innerHTML = '<th>No</th>' + config.participantFields
+      .filter(f => f.type !== 'hidden')
+      .map(f => `<th>${f.label}</th>`)
+      .join('') + '<th>Aksi</th>';
+    
+    // Render body
+    if (data.length === 0) {
+      bodyRow.innerHTML = `
+        <tr><td colspan="100" style="padding:40px;">
+          <div class="empty-state">
+            <i data-lucide="inbox"></i>
+            <h3>Belum ada peserta</h3>
+          </div>
+        </td></tr>
+      `;
+    } else {
+      bodyRow.innerHTML = data.map((row, idx) => {
+        let tr = '<tr>';
+        tr += `<td>${idx + 1}</td>`;
+        config.participantFields
+          .filter(f => f.type !== 'hidden')
+          .forEach(f => {
+            let value = row[f.name] || '-';
+            if ((f.name === 'TotalAnggaran' || f.name === 'Anggaran' || f.name === 'Penghasilan') && value !== '-') {
+              value = formatRupiah(value);
+            }
+            tr += `<td>${value}</td>`;
+          });
+        tr += `
+          <td>
+            <div class="cell-actions">
+              <button class="btn-icon-sm edit" onclick="editParticipant('${program}', ${row.rowIndex})">
+                <i data-lucide="pencil" style="width:16px;height:16px;"></i>
+              </button>
+              <button class="btn-icon-sm delete" onclick="deleteParticipant('${program}', ${row.rowIndex})">
+                <i data-lucide="trash-2" style="width:16px;height:16px;"></i>
+              </button>
+            </div>
+          </td>
+        </tr>`;
+        return tr;
+      }).join('');
+    }
+    
+    document.getElementById('participantCount').textContent = `${data.length} peserta`;
+  }
+
+  function openAddParticipantModal(program, sessionId) {
+    const config = getProgramConfig(program);
+    if (!config?.participantFields) return;
+    
+    if (config.participantSheet === 'SantunanPenerima') {
+      openBulkSantunanParticipantModal(sessionId);
+      return;
+    }
+
+    const values = {};
+    // Set foreign key sesuai schema
+    if (config.participantSheet === 'SantunanPenerima') values.SantunanID = sessionId;
+    if (config.participantSheet === 'KhitanPeserta') values.KhitanSessionID = sessionId;
+
+    const formHtml = generateFormHtml(config.participantFields, 'part_', values);
+    openModal(`Tambah Peserta - ${config.title}`, formHtml, () => submitAddParticipant(program, sessionId));
+
+  }
+
+  function submitAddParticipant(program, sessionId) {
+    if (!beginModalSubmit()) return;
+    const config = getProgramConfig(program);
+    const data = {};
+
+    config.participantFields.forEach(f => {
+      const el = document.getElementById('part_' + f.name);
+      if (el) data[f.name] = el.value;
+    });
+
+    // Foreign key safety
+    if (config.participantSheet === 'SantunanPenerima') data.SantunanID = sessionId;
+    if (config.participantSheet === 'KhitanPeserta') data.KhitanSessionID = sessionId;
+
+    // Validasi required
+    const requiredFields = config.participantFields.filter(f => f.required);
+    for (let f of requiredFields) {
+      if (!data[f.name]) {
+        showToast('warning', 'Validasi', `Field "${f.label}" wajib diisi`);
+        endModalSubmit();
+        return;
+      }
+    }
+
+    // Santunan: pastikan mapping penerima sudah terisi
+    if (config.participantSheet === 'SantunanPenerima' && (!data.JenisPenerima || !data.PenerimaID)) {
+      showToast('warning', 'Validasi', 'Penerima belum dipilih');
+      endModalSubmit();
+      return;
+    }
+
+    google.script.run
+      .withSuccessHandler(result => {
+        if (result.success) {
+          closeModal();
+          showToast('success', 'Berhasil', result.message);
+          loadParticipants(program, sessionId);
+        } else {
+          showToast('error', 'Gagal', result.message);
+          endModalSubmit();
+        }
+      })
+      .withFailureHandler(err => {
+        showToast('error', 'Gagal', err.message || 'Terjadi kesalahan');
+        console.error(err);
+        endModalSubmit();
+      })
+      .addParticipant(config.participantSheet, data);
+  }
+
+  function editParticipant(program, participantRowIndex) {
+    const config = getProgramConfig(program);
+    const row = (window.currentParticipants || []).find(r => r.rowIndex === participantRowIndex);
+    if (!row) return;
+
+    const formHtml = generateFormHtml(config.participantFields, 'edit_part_', row);
+    openModal(`Edit Peserta - ${config.title}`, formHtml, () => submitEditParticipant(program, participantRowIndex));
+
+    if (config.participantSheet === 'SantunanPenerima') {
+      // Disable dropdown in edit mode; user bisa edit Status/Keterangan.
+      const select = document.getElementById('edit_part_Penerima');
+      if (select) {
+        select.innerHTML = '<option value="">(tidak bisa diubah)</option>';
+        select.disabled = true;
+      }
+    }
+  }
+
+  function submitEditParticipant(program, participantRowIndex) {
+    if (!beginModalSubmit()) return;
+    const config = getProgramConfig(program);
+    const data = {};
+    config.participantFields.forEach(f => {
+      const el = document.getElementById('edit_part_' + f.name);
+      if (el) data[f.name] = el.value;
+    });
+
+    google.script.run
+      .withSuccessHandler(result => {
+        if (result.success) {
+          closeModal();
+          showToast('success', 'Berhasil', result.message);
+          loadParticipants(program, currentSessionId);
+        } else {
+          showToast('error', 'Gagal', result.message);
+          endModalSubmit();
+        }
+      })
+      .withFailureHandler(err => {
+        showToast('error', 'Gagal', err.message || 'Terjadi kesalahan');
+        console.error(err);
+        endModalSubmit();
+      })
+      .updateParticipant(config.participantSheet, data, participantRowIndex);
+  }
+
+  function deleteParticipant(program, participantRowIndex) {
+    const config = getProgramConfig(program);
+    if (!confirm('Hapus data peserta ini?')) return;
+
+    google.script.run
+      .withSuccessHandler(result => {
+        if (result.success) {
+          showToast('success', 'Berhasil', result.message);
+          loadParticipants(program, currentSessionId);
+        } else {
+          showToast('error', 'Gagal', result.message);
+        }
+      })
+      .withFailureHandler(err => {
+        showToast('error', 'Gagal', err.message || 'Terjadi kesalahan');
+        console.error(err);
+      })
+      .deleteParticipant(config.participantSheet, participantRowIndex);
+  }
+
+  // ==================== UTILS ====================
+  function formatRupiah(angka) {
+    if (!angka || angka === '-' || angka === 0) return 'Rp 0';
+    return 'Rp ' + Number(angka).toLocaleString('id-ID');
+  }
+</script>
+
+</body>
+</html>
